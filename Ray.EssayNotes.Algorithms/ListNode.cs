@@ -15,5 +15,28 @@ namespace Ray.EssayNotes.Algorithms
             this.val = val;
             this.next = next;
         }
+
+        public ListNode(List<int> list)
+        {
+            this.val = list[0];
+            list.RemoveAt(0);
+            this.next = list.Count == 0
+                ? null
+                : new ListNode(list);
+        }
+
+        public override string ToString()
+        {
+            var ln = this;
+            List<int> list = new List<int> { ln.val };
+
+            while (ln.next != null)
+            {
+                list.Add(ln.next.val);
+                ln = ln.next;
+            }
+
+            return string.Join(',', list);
+        }
     }
 }
